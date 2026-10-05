@@ -27,7 +27,7 @@ public class Category {
     }
 
     /**
-     * @param id new value of {@link #getId}.
+     * @param id new value of {@link #getId()}.
      */
     public void setId(Long id) {
 
@@ -43,7 +43,7 @@ public class Category {
     }
 
     /**
-     * @param name new value of {@link #getName}.
+     * @param name new value of {@link #getName()}.
      */
     public void setName(String name) {
 

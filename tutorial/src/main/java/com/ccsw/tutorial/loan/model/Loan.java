@@ -21,7 +21,7 @@ public class Loan {
 
     @ManyToOne
     @JoinColumn(name = "game_id", nullable = false)
-    private Game game_id;
+    private Game game;
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
@@ -31,11 +31,11 @@ public class Loan {
     //Json Fromater de el Jackson para pasar fechas a .json
     @Column(name = "start_date", nullable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate start_date;
+    private LocalDate startDate;
 
     @Column(name = "end_date", nullable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate end_date;
+    private LocalDate endDate;
 
 
     //Getters y setters
@@ -49,20 +49,20 @@ public class Loan {
         this.id = id;
     }
 
-    public LocalDate getEnd_date() {
-        return end_date;
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
-    public void setEnd_date(LocalDate end_date) {
-        this.end_date = end_date;
+    public void setEndDate(LocalDate end_date) {
+        this.endDate = end_date;
     }
 
-    public LocalDate getStart_date() {
-        return start_date;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setStart_date(LocalDate start_date) {
-        this.start_date = start_date;
+    public void setStartDate(LocalDate start_date) {
+        this.startDate = start_date;
     }
 
     public Client getClient() {
@@ -73,11 +73,11 @@ public class Loan {
         this.client = client;
     }
 
-    public Game getGame_id() {
-        return game_id;
+    public Game getGame() {
+        return game;
     }
 
-    public void setGame_id(Game game_id) {
-        this.game_id = game_id;
+    public void setGame(Game game_id) {
+        this.game = game_id;
     }
 }

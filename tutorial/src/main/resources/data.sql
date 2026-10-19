@@ -34,24 +34,29 @@ VALUES ('Azul', '8', 3, 5);
 
 
 INSERT INTO client(name)
-VALUES ('Hasan');
+VALUES ('Hasan Ouasou');
 INSERT INTO client(name)
-VALUES ('Elvin');
+VALUES ('Elvin Portillo');
 INSERT INTO client(name)
-VALUES ('Daniel');
+VALUES ('Daniel Martínez');
 INSERT INTO client(name)
-VALUES ('Aroa');
+VALUES ('Aroa García');
 INSERT INTO client(name)
-VALUES ('Aurora');
+VALUES ('Aurora Martínez');
+INSERT INTO client(name)
+VALUES ('Aitor Hernández');
+INSERT INTO client(name)
+VALUES ('Martín Pérez');
 
-
 INSERT INTO loan(game_id, client_id, start_date, end_date)
-VALUES (1, 1, '2020-10-10', '2021-10-10');
+VALUES (1, 1, '2026-10-01', '2026-10-10');
 INSERT INTO loan(game_id, client_id, start_date, end_date)
-VALUES (2, 2, '2020-10-10', '2021-03-18');
+VALUES (2, 2, '2026-10-05', '2026-10-15');
 INSERT INTO loan(game_id, client_id, start_date, end_date)
-VALUES (3, 3, '2024-01-29', '2027-05-01');
+VALUES (3, 3, '2026-10-08', '2026-10-20');
 INSERT INTO loan(game_id, client_id, start_date, end_date)
-VALUES (4, 4, '2022-08-10', '2022-09-01');
+VALUES (4, 4, '2026-10-12', '2026-10-24');
 INSERT INTO loan(game_id, client_id, start_date, end_date)
-VALUES (6, 5, '2020-10-10', '2021-10-10');
+VALUES (5, 5, '2026-10-15', '2026-10-25');
+INSERT INTO loan(game_id, client_id, start_date, end_date)
+VALUES (6, 1, '2026-10-18', '2026-10-30');

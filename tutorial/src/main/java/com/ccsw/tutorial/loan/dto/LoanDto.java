@@ -16,11 +16,11 @@ public class LoanDto {
 
 
     //Usaremos el json formater de jackson para pasar fechas, con este formato
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate start_date;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate startDate;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate end_date;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate endDate;
 
 
     //Getters y setters
@@ -49,19 +49,19 @@ public class LoanDto {
         this.client = client;
     }
 
-    public LocalDate getStart_date() {
-        return start_date;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setStart_date(LocalDate start_date) {
-        this.start_date = start_date;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
-    public LocalDate getEnd_date() {
-        return end_date;
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
-    public void setEnd_date(LocalDate end_date) {
-        this.end_date = end_date;
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 }

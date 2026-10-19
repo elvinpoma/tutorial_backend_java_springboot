@@ -10,5 +10,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ClientRepository extends CrudRepository<Client, Long> {
-    boolean existsByName(String name);
+    boolean existsByNameIgnoreCase(String name);
+
+    Client getById(Long id);
 }

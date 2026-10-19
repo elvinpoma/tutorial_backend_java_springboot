@@ -8,7 +8,9 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author elportil
@@ -43,12 +45,17 @@ public class ClientServiceImpl implements ClientService {
      */
     @Override
     public void save(Long id, ClientDto dto) throws Exception {
+
+        //Para evitar duplicciones por espacios o apellidos con mayus/minus
+        String normalizedName = normalizedName(dto.getName());
 //
 // Si el cliente recibido no tiene ID, se interpreta como una creación.
 // Si ya existe en la base de datos, se lanzará un error.
 // Si el cliente viene con un ID, se tratará como una modificación.
 //
-        if (id == null && clientRepository.existsByName(dto.getName())) {
+
+
+        if (id == null && clientRepository.existsByNameIgnoreCase(normalizedName)) {
             throw new Exception("The customer already exists!");
         }
 
@@ -60,9 +67,15 @@ public class ClientServiceImpl implements ClientService {
             client = this.get(id);
         }
 
-        client.setName(dto.getName());
+        client.setName(normalizedName);
 
         this.clientRepository.save(client);
+    }
+
+    private String normalizedName(String name) {
+        return Arrays.stream(name.trim().toLowerCase().split("\\s+"))
+                .map(word -> Character.toUpperCase(word.charAt(0)) + word.substring(1))
+                .collect(Collectors.joining(" "));
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.ccsw.tutorial.loan.controller;
 
+import com.ccsw.tutorial.game.dto.GameDto;
 import com.ccsw.tutorial.loan.dto.LoanDto;
 import com.ccsw.tutorial.loan.dto.LoanSearchDto;
 import com.ccsw.tutorial.loan.model.Loan;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +32,24 @@ public class LoanController {
 
     @Autowired
     ModelMapper mapper;
+
+    /**
+     * Método para recuperar una lista de {@link Loan}
+     *
+     * @param gameTitle título del juego
+     * @param idClient  PK de la client
+     * @return {@link List} de {@link GameDto}
+     */
+    @Operation(summary = "Find", description = "Method that return a filtered list of Loans")
+    @RequestMapping(path = "", method = RequestMethod.GET)
+    public List<LoanDto> find(@RequestParam(value = "gameTitle", required = false) String gameTitle, @RequestParam(value = "idClient", required = false) Long idClient, @RequestParam(value = "date", required = false) LocalDate date) {
+        System.out.println("gameTitle = " + gameTitle);
+        System.out.println("idClient = " + idClient);
+        System.out.println("date = " + date);
+        List<Loan> loans = loanService.find(gameTitle, idClient, date);
+
+        return loans.stream().map(e -> mapper.map(e, LoanDto.class)).collect(Collectors.toList());
+    }
 
     /**
      * Método para recuperar un listado paginado de {@link Loan}
@@ -51,14 +71,14 @@ public class LoanController {
      *
      * @return {@link List} de {@link LoanDto}
      */
-    @Operation(summary = "Find", description = "Method that return a list of Loans")
-    @RequestMapping(path = "", method = RequestMethod.GET)
-    public List<LoanDto> findAll() {
-
-        List<Loan> Loans = this.loanService.findAll();
-
-        return Loans.stream().map(e -> mapper.map(e, LoanDto.class)).collect(Collectors.toList());
-    }
+//    @Operation(summary = "Find", description = "Method that return a list of Loans")
+//    @RequestMapping(path = "", method = RequestMethod.GET)
+//    public List<LoanDto> findAll() {
+//
+//        List<Loan> Loans = this.loanService.findAll();
+//
+//        return Loans.stream().map(e -> mapper.map(e, LoanDto.class)).collect(Collectors.toList());
+//    }
 
     /**
      * Método para crear o actualizar un {@link Loan}
@@ -68,7 +88,7 @@ public class LoanController {
      */
     @Operation(summary = "Save or Update", description = "Method that saves or updates a Loan")
     @RequestMapping(path = {"", "/{id}"}, method = RequestMethod.PUT)
-    public void save(@PathVariable(name = "id", required = false) Long id, @RequestBody LoanDto dto) {
+    public void save(@PathVariable(name = "id", required = false) Long id, @RequestBody LoanDto dto) throws Exception {
 
         this.loanService.save(id, dto);
     }
